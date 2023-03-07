@@ -27,10 +27,15 @@ public final class Game {
             int opened = board.open(positionToOpen);
             if (board.hasBomb(positionToOpen)) {
                 gameFinisher.explode();
+                System.err.println("You have found the bomb!");
                 renderer.drawRevealed(boardPresentation);
                 break;
             }
             gameFinisher.cellsOpened(opened);
+        }
+        if (!gameFinisher.isLoosed()) {
+            renderer.draw(boardPresentation);
+            System.err.println("You win!");
         }
 
     }
